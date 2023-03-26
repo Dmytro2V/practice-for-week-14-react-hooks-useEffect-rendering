@@ -13,6 +13,17 @@ const Main = () => {
     if (toggleTwo)
       console.log("toggleTwo slice of state is true so this code runs");
   }, [toggleTwo]);
+  useEffect(() => {
+    let myInterval = setInterval(() => {
+      console.log(`UseEffect3 with interval number ${count} is running`);
+    }, 1000);
+    return () => {
+      console.log(
+        `UseEffect3 cleanup ran.\nsetInterval number ${count} is being cleared out`
+      );
+      clearInterval(myInterval);
+    };
+  }, [count]);
 
   return (
     <div>
@@ -29,7 +40,7 @@ const Main = () => {
           return setCount((prewCount) => prewCount + 1);
         }}
       >
-        {console.log({ count })}
+        {console.log(count)}
         Count
       </button>
     </div>
